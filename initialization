@@ -1,0 +1,23 @@
+helm upgrade --install airflow airflow-stable/airflow \
+  -n airflow \
+  --reuse-values \
+  --set-string airflow.executor='CeleryExecutor' \
+  --set workers.enabled=true \
+  --set flower.enabled=true \
+  --set redis.enabled=true \
+  --set-string redis.image.registry='docker.io' \
+  --set-string redis.image.repository='bitnamilegacy/redis' \
+  --set-string redis.image.tag='6.2.14-debian-12-r17' \
+  --set global.security.allowInsecureImages=true \
+  --set dags.gitSync.enabled=true \
+  --set-string dags.gitSync.repo='https://github.com/Tefaier/AirflowOffloadExample.git' \
+  --set-string dags.gitSync.branch='main' \
+  --set-string dags.gitSync.revision='HEAD' \
+  --set dags.gitSync.depth=1 \
+  --set-string dags.gitSync.repoSubPath='dags' \
+  --set dags.gitSync.syncWait=60 \
+  --set dags.gitSync.syncTimeout=30 \
+  --set dags.gitSync.maxFailures=1 \
+  --set-string dags.gitSync.sshSecret='' \
+  --set-string dags.gitSync.sshKnownHosts='' \
+  --set-string airflow.config.AIRFLOW__CORE__LOAD_EXAMPLES='False'
