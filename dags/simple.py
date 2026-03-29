@@ -11,7 +11,7 @@ def print_world():
 
 
 with DAG(
-    'hello_world_dag', # Название DAG в оркестраторе
+    'hello_world_dag - tefaier', # Название DAG в оркестраторе
     start_date=datetime(2025, 9, 11), # Дата первого запуска
     schedule="@daily", # Расписание переодичности выполнения
     tags=['demo'], # Название группы файлов\команды разработки
